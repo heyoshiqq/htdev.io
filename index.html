@@ -8,37 +8,68 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..870&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-dark">
-                <a class="navbar-brand" href="#">
-                    <img src="img/HTDev.png" alt="HTDev Logo">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Направления</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Преимущества</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Кейсы</a>
-                        </li>
-                    </ul>
-                    <div class="contact-button d-none d-lg-block">
-                        <button class="btn btn-primary"><span>Связаться</span></button>
-                    </div>
+<!-- Modal HTML -->
+<div id="contactModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Обратный звонок</h2>
+        <form action="https://formspree.io/f/moqggnko" method="post" id="callbackForm">
+            <label for="name">Имя*</label>
+            <input type="text" id="name" name="name" placeholder="Обязательное поле" required>
+            <span class="error" id="nameError">Пожалуйста, введите имя.</span>
+
+            <label for="phone">Телефон*</label>
+            <input type="text" id="phone" name="phone" placeholder="Обязательное поле" required>
+            <span class="error" id="phoneError">Пожалуйста, введите корректный номер телефона.</span>
+
+            <div class="consent">
+                <input type="checkbox" id="consent" name="consent" required>
+                <label for="consent">Настоящим я соглашаюсь на обработку моих персональных данных и подтверждаю, что ознакомлен(а) с <a href="#">Политикой в области обработки и защиты персональных данных</a></label>
+            </div>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+    </div>
+</div>
+
+
+
+<!-- Existing HTML -->
+<header class="header">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/HTDev.png" alt="HTDev Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Направления</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Преимущества</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Кейсы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="second.html">Контакты</a>
+                    </li>
+                </ul>
+                <div class="contact-button d-none d-lg-block">
+                    <button class="btn btn-primary" id="contactBtn"><span>Связаться</span></button>
                 </div>
-            </nav>
-        </div>
-    </header>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
     <main>
         <div class="first-section">
             <div class="second-section">
@@ -49,53 +80,246 @@
                 <p>С 2005 года команда профессионалов HTDev помогает среднему и крупному бизнесу в России и странах СНГ решать сложные задачи и достигать намеченных целей</p>
                 <div class="stats">
                     <div class="stat-item">
-                        <h2>18</h2>
-                        <p>лет<br> на рынке</p>
+                        <h2 class="stat-number" data-target="stat1">18</h2>
+                        <p class="stat-info" id="stat1">лет<br> на рынке</p>
                     </div>
                     <div class="stat-item">
-                        <h2>70+</h2>
-                        <p>профессионалов в команде</p>
+                        <h2 class="stat-number" data-target="stat2">87+</h2>
+                        <p class="stat-info" id="stat2">профессионалов в команде</p>
                     </div>
                     <div class="stat-item">
-                        <h2>600+</h2>
-                        <p>благодарных клиентов</p>
+                        <h2 class="stat-number" data-target="stat3">870+</h2>
+                        <p class="stat-info" id="stat3">благодарных клиентов</p>
                     </div>
                     <div class="stat-item">
-                        <h2>1000+</h2>
-                        <p>проектов реализовано</p>
+                        <h2 class="stat-number" data-target="stat4">1000+</h2>
+                        <p class="stat-info" id="stat4">проектов реализовано</p>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container">
-            <div class="d-flex justify-content flex-wrap">
-            <h1 class="section-title">Наши направления</h1>
-        </div>
-            <div class="d-flex justify-content flex-wrap">
-                <span class="badge badge-danger badge-custom">Разработка</span>
-                <span class="badge badge-warning badge-custom2">UX-/UI-дизайн</span>
-                <span class="badge badge-primary badge-custom3">Системная аналитика</span>
-                <span class="badge badge-success badge-custom4">Архитектурная визуализация<br> в реальном времени</span>
-                <span class="badge badge-orange badge-custom5">Моушн-дизайн</span>
-            </div>
-            <div class="d-flex justify-content flex-wrap">
-                <span class="badge badge-dark badge-custom6">Performance-маркетинг</span>
-                <span class="badge badge-info badge-custom7">Искусственный интеллект</span>
-            </div>
+        </div>        
+        <div class="second-section-main">
+            <div class="container">
                 <div class="d-flex justify-content flex-wrap">
-                <span class="badge badge-purple badge-custom8">Юридическая проверка<br> контента, публикуемого<br> в интернете</span>
-                <span class="badge badge-purple badge-custom9"><p>Создание фотореалистичных<br> изображений и интерактивной<br> визуализации для оценки характеристик<br> будущих и существующих объектов
-
-                    <br><br>  > Узнать подробнее <p><img src="img/image 10.png" style="margin-left: 160px;"></p></span>
+                    <h1 class="section-title">Наши направления</h1>
+                </div>
+                <div class="d-flex justify-content flex-wrap">
+                    <span class="badge badge-danger badge-custom" onclick="changeContent('development')">Разработка</span>
+                    <span class="badge badge-warning badge-custom2" onclick="changeContent('uxui')">UX-/UI-дизайн</span>
+                    <span class="badge badge-primary badge-custom3" onclick="changeContent('analytics')">Системная аналитика</span>
+                    <span class="badge badge-success badge-custom4" onclick="changeContent('visualization')">Архитектурная визуализация<br> в реальном времени</span>
+                    <span class="badge badge-orange badge-custom5" onclick="changeContent('motionDesign')">Моушн-дизайн</span>
+                </div>
+                <div class="d-flex justify-content flex-wrap">
+                    <span class="badge badge-dark badge-custom6" onclick="changeContent('marketing')">Performance-маркетинг</span>
+                    <span class="badge badge-info badge-custom7" onclick="changeContent('ai')">Искусственный интеллект</span>
+                </div>
+                <div class="d-flex justify-content flex-wrap">
+                    <span class="badge badge-purple badge-custom8" onclick="changeContent('legal')">Юридическая проверка<br> контента, публикуемого<br> в интернете</span>
+                    <span class="badge badge-purple badge-custom9" id="dynamic-content">
+                        <div class="text-container">
+                            <p>Создание фотореалистичных<br> изображений и интерактивной<br> визуализации для оценки характеристик<br> будущих и существующих объектов
+                                <br><br>
+                            </p>
+                        </div>
+                        <div class="image-container">
+                            <img src="img/image10.png" alt="Image">
+                        </div>
+                    </span>
+                </div>
+                <div class="d-flex justify-content flex-wrap">
+                    <div class="container">
+                        <p class="third-text">Трансформируем технологии в будущее</p>
+                    </div>
                 </div>
             </div>
-            <div class="d-flex justify-content flex-wrap">
-                <div class="container">
-                <p class="third-text">Трансформируем технологии в будущее</p>
+        </div>
+        
+    <section class="advantages-section">
+        <div class="container">
+          <h2 class="section-title">Преимущества</h2>
+          <div class="row justify-content-between">
+            <div class="col-md-5">
+              <div class="advantage">
+                <img src="img/image 11.png" alt="Advantage 1">
+                <p>Мы работаем как аутсорсинговая компания и реализуем проекты полностью самостоятельно или совместно с Вашей ИТ-командой.</p>
+              </div>
             </div>
+            <div class="col-md-5">
+              <div class="advantage">
+                <img src="img/image 12.png" alt="Advantage 2">
+                <p>Наши сотрудники являются сертифицированными специалистами, а все обязательства строго фиксируются в договоре.</p>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="advantage">
+                <img src="img/image 14.png" alt="Advantage 3">
+                <p>Предоставляем итоговые и промежуточные отчёты о проделанной работе, занимаем проактивную позицию и делимся наработанной годами экспертизой</p>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="advantage">
+                <img src="img/image 16.png" alt="Advantage 4">
+                <p>Мы нацелены на создание долгосрочных партнёрских отношений, поэтому предлагаем оптимальные решения, учитывая специфику Вашего бизнеса</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="cases">
+        <div class="container">
+            <div class="d-flex flex-wrap">
+                <h1 class="section-title">Кейсы</h1>
+            </div>
+            <div class="case-container">
+                <div class="case-card active" id="card1">
+                    <img src="img/ri_arrow-up-line.png" class="arrow arrow1" onclick="prevCard()">
+                    <div class="case-card-fill">
+                        <div class="text-center-case">
+                            <img src="img/hh-logo 3.png" alt="HeadHunter" height="76" style="width: 77px; height: 76px;">
+                            <h3>HeadHunter</h3>
+                            <p>Российская компания интернет-рекрутмента, специализирующаяся на предоставлении услуг</p>
+                            <button class="btn-primary case-button"><span>Посмотреть отзыв</span></button>
+                        </div>
+                        <div class="mt-4 case-card-fill-two">
+                            <h4>Комплексная разработка по развитию продуктовых направлений</h4>
+                            <div class="technology-list">
+                                <p><strong>Аналитика:</strong> Figma, SWAGGER</p>
+                                <p><strong>UX-/UI-дизайн:</strong> FIGMA, Adobe Illustrator, Adobe Photoshop</p>
+                                <p><strong>Frontend- и backend-разработка:</strong> HTML5, CSS3, SASS, JavaScript, jQuery, React, Webpack, Gulp, Node, Ajax, Rest API, D3, JSON, JWT, PHP, Laravel, Docker, MySQL, PostgreSQL, Nginx, Redis, Elasticsearch, GitLab CI/CD</p>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="img/ru_arrow-up-line.png" class="arrow arrow2" onclick="nextCard()">
+                </div>
+    
+                <div class="case-card" id="card2">
+                    <img src="img/ri_arrow-up-line.png" class="arrow arrow1" onclick="prevCard()">
+                    <div class="case-card-fill">
+                        <div class="text-center-case1">
+                            <img src="img/hh-logo 4.png" alt="Avito" height="76" style="width: 77px; height: 76px;">
+                            <h3>Avito</h3>
+                            <p>Интернет-сервис для размещения объявлений, позволяющий покупать и продавать</p>
+                            <button class="btn-primary case-button"><span>Посмотреть отзыв</span></button>
+                        </div>
+                        <div class="mt-4 case-card-fill-two">
+                            <h4>Разработка и интеграция веб-сервисов</h4>
+                            <div class="technology-list">
+                                <p><strong>Аналитика:</strong> Figma, SWAGGER</p>
+                                <p><strong>UX-/UI-дизайн:</strong> Figma</p>
+                                <p><strong>Frontend- и backend-разработка:</strong> Node.js, Vue.js, HTML5, CSS3, SASS, JavaScript, jQuery, Ajax, Rest API, JSON, JWT, PostgreSQL, GitLab CI/CD, Atlassian Jira</p>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="img/ru_arrow-up-line.png" class="arrow arrow2" onclick="nextCard()">
+                </div>
+    
+                <!-- Новые карточки -->
+                <div class="case-card" id="card3">
+                    <img src="img/ri_arrow-up-line.png" class="arrow arrow1" onclick="prevCard()">
+                    <div class="case-card-fill">
+                        <div class="text-center-case1">
+                            <img src="img/hh-logo 5.png" alt="Wildberries" height="76" style="width: 77px; height: 76px;">
+                            <h3>Wildberries</h3>
+                            <p>Международный маркетплейс предоставляющий широкий выбор</p>
+                            <button class="btn-primary case-button mt-4"><span>Посмотреть отзыв</span></button>
+                        </div>
+                        <div class="mt-4 case-card-fill-two">
+                            <h4>Разработка веб-сервиса</h4>
+                            <div class="technology-list">
+                                <p><strong>Аналитика:</strong> Figma, SWAGGER, Visio</p>
+                                <p><strong>UX-/UI-дизайн:</strong> Figma</p>
+                                <p><strong>Frontend- и backend-разработка:</strong> Angular, GoLang, HTML5, CSS3, SASS, JavaScript, jQuery, Ajax, Rest API, JSON, JWT, PostgreSQL, GitLab CI/CD, Atlassian Jira</p>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="img/ru_arrow-up-line.png" class="arrow arrow2" onclick="nextCard()">
+                </div>
+                
+    
+                <div class="case-card" id="card4">
+                    <img src="img/ri_arrow-up-line.png" class="arrow arrow1" onclick="prevCard()">
+                    <div class="case-card-fill">
+                        <div class="text-center-case1">
+                            <img src="img/hh-logo 6.png" alt="Ситимобил" height="76" style="width: 77px; height: 76px;">
+                            <h3>Ситимобил</h3>
+                            <p>Сервис городской мобильности, предлагающий широкий спектр транспортных услуг</p>
+                            <button class="btn-primary case-button"><span>Посмотреть отзыв</span></button>
+                        </div>
+                        <div class="mt-4 case-card-fill-two">
+                            <h4>Frontend-разработка</h4>
+                            <div class="technology-list">
+                                <p><strong>UX-/UI-дизайн:</strong> Figma</p>
+                                <p><strong>Frontend- и backend-разработка:</strong> HTML, CSS, Адаптивная верстка</p>
+                                <p><strong>Тестирование:</strong> Litmus</p>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="img/ru_arrow-up-line.png" class="arrow arrow2" onclick="nextCard()">
+                </div>
+    
+                <div class="case-card" id="card5">
+                    <img src="img/ri_arrow-up-line.png" class="arrow arrow1" onclick="prevCard()">
+                    <div class="case-card-fill">
+                        <div class="text-center-case1">
+                            <img src="img/hh-logo 7.png" alt="Сбер" height="76" style="width: 77px; height: 76px;">
+                            <h3>Сбер</h3>
+                            <p>Цифровая экосистема сервисов, включающая банковские услуги</p>
+                            <button class="btn-primary case-button"><span>Посмотреть отзыв</span></button>
+                        </div>
+                        <div class="mt-4 case-card-fill-two">
+                            <h4>Frontend- и backend-разработка</h4>
+                            <div class="technology-list">
+                                <p><strong>UX-/UI-дизайн:</strong> Figma, Adobe Illustrator, Adobe Photoshop, Adobe After Effects, Power Point</p>
+                                <p><strong>Frontend- и backend-разработка:</strong> HTML5, CSS3</p>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="img/ru_arrow-up-line.png" class="arrow arrow2" onclick="nextCard()">
+                </div>
             </div>
         </div>
+        <div class="container"> 
+        <div class="logos">
+            <div class="case-card-fill">
+                <div class="text-center-case">
+                    <img src="img/hh-logo 3.png" alt="HeadHunter" id="logo1" class="logo" style="width: 77px; height: 76px; margin-right: 120px;">
+                    <img src="img/avito-logo 1.png" alt="Avito" id="logo2" class="logo" style="width: 157px; height: 76px; margin-right: 120px;">
+                    <img src="img/w-logo 1.png" alt="Wildberries" id="logo3" class="logo" style="width: 157px; height: 76px; margin-right: 120px;">
+                    <img src="img/c-logo 1.png" alt="Ситимобил" id="logo4" class="logo" style="width: 157px; height: 76px; margin-right: 120px;">
+                    <img src="img/sber-logo 1.png" alt="Сбер" id="logo5" class="logo" style="width: 157px; height: 76px;">
+                </div>
+            </div>
+        </div>  
+        </div>
+        </div>
+    </section>   
     </main>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>HTDev</h3>
+                <p>&copy; 2024 ООО «ХайТэк Девелопмент Групп»</p>
+                <p><img src="img/image 19.png" alt="" style="margin-top: 30px;"></p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p><img src="img/Frame 1.png" alt="Phone Icon" style="margin-right: 18px;"> 8 800 900 5343</p>
+                <p><img src="img/dashicons_email.png" alt="Email Icon" style="margin-right: 18px;"> info@htdev.ru</p>
+                <p><img src="img/Frame 3.png" alt="Location Icon" style="margin-right: 18px;"> Россия, Ульяновск</p>
+            </div>
+            <div class="footer-section">
+                <h3>Социальные сети</h3>
+                <div class="social-icons">
+                    <a href="#"><img src="img/Group 85.svg" alt="Facebook"></a>
+                    <a href="#"><img src="img/Group 86.svg" alt="Twitter"></a>
+                    <a href="#"><img src="img/Group 87.svg" alt="LinkedIn"></a>
+                    <a href="#"><img src="img/Group 88.svg" alt="Instagram"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="main.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
