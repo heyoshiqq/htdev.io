@@ -149,68 +149,99 @@ function changeContent(type) {
     }, 500);
 }
 
-// JavaScript to handle modal and form validation
-document.addEventListener('DOMContentLoaded', (event) => {
-    // Get the modal
-    var modal = document.getElementById("contactModal");
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('contactModal');
+    const openModalBtn = document.getElementById('contactBtn');
+    const closeModalSpan = document.querySelector('.close');
+    const form = document.getElementById('callbackForm');
+    const nameInput = document.getElementById('name');
+    const phoneInput = document.getElementById('phone');
+    const consentCheckbox = document.getElementById('consent');
+    const submitBtn = document.getElementById('submitBtn');
+    const nameError = document.getElementById('nameError');
+    const phoneError = document.getElementById('phoneError');
+    const resultMessage = document.getElementById('resultMessage');
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("contactBtn");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
-    // Form validation
-    var form = document.getElementById('callbackForm');
-    var nameInput = document.getElementById('name');
-    var phoneInput = document.getElementById('phone');
-    var nameError = document.getElementById('nameError');
-    var phoneError = document.getElementById('phoneError');
-
-    form.addEventListener('submit', function(event) {
-        var isValid = true;
-
-        // Reset error messages
-        nameError.style.display = 'none';
-        phoneError.style.display = 'none';
-
-        // Validate name
+    const validateForm = () => {
+        let isValid = true;
+        
         if (nameInput.value.trim() === '') {
             nameError.style.display = 'block';
             isValid = false;
+        } else {
+            nameError.style.display = 'none';
         }
-
-        // Validate phone (simple validation for demonstration, you might want to use a more robust validation)
-        var phonePattern = /^[+]?[0-9\s-]{10,15}$/;
-        if (!phonePattern.test(phoneInput.value.trim())) {
+        
+        const phoneRegex = /^\d+$/;
+        if (!phoneRegex.test(phoneInput.value.trim())) {
             phoneError.style.display = 'block';
+            isValid = false;
+        } else {
+            phoneError.style.display = 'none';
+        }
+        
+        if (!consentCheckbox.checked) {
             isValid = false;
         }
 
-        if (!isValid) {
-            event.preventDefault();
+        submitBtn.disabled = !isValid;
+        if (isValid) {
+            submitBtn.classList.add('active');
+        } else {
+            submitBtn.classList.remove('active');
+        }
+        
+        return isValid;
+    };
+
+    openModalBtn.addEventListener('click', () => {
+        modal.style.display = 'block';
+    });
+
+    closeModalSpan.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target == modal) {
+            modal.style.display = 'none';
         }
     });
+
+    form.addEventListener('input', validateForm);
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        
+        if (!validateForm()) {
+            return;
+        }
+
+        const formData = new FormData(form);
+
+        fetch('https://heyoshiqq.github.io/htdev.io/send-email.php', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                resultMessage.textContent = 'Заявка успешно отправлена!';
+                form.reset();
+                submitBtn.disabled = true;
+                submitBtn.classList.remove('active');
+                submitBtn.textContent = 'Отправлено';
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    resultMessage.textContent = '';
+                    submitBtn.textContent = 'Отправить';
+                }, 3000);
+            } else {
+                throw new Error('Ошибка при отправке формы');
+            }
+        })
+        .catch(error => {
+            resultMessage.textContent = 'Ошибка при отправке формы. Пожалуйста, попробуйте снова.';
+        });
+    });
 });
-
-
-
-
-
