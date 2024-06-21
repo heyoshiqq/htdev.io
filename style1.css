@@ -11,10 +11,15 @@ main {
     
 .contact-card {
     text-align: center;
-    border: 1px solid #ddd;
+    margin-bottom: 128px;
     padding: 20px;
     border-radius: 10px;
     transition: box-shadow 0.3s ease-in-out;
+    box-sizing: border-box;
+    border: 1px solid rgb(234, 234, 234);
+    border-radius: 16px;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.04),0px 4px 8px 0px rgba(0, 0, 0, 0.04),0px 14px 14px 0px rgba(0, 0, 0, 0.03),0px 32px 19px 0px rgba(0, 0, 0, 0.02),0px 57px 23px 0px rgba(0, 0, 0, 0.01),0px 89px 25px 0px rgba(0, 0, 0, 0);
+    background: rgba(0, 0, 0, 0.02),rgb(255, 255, 255);
   }
   .contact-card img {
     width: 100px;
@@ -37,8 +42,6 @@ main {
     margin: 0 auto;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
-    width: 100vw;
-    height: 100vh;
     margin: 0;
     padding: 0;
 }
@@ -48,6 +51,8 @@ main {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    min-height: 100vh !important;
+    position: static !important;
 }
 
 .second-second {
@@ -55,17 +60,30 @@ main {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    padding-bottom: 170px;
+    min-height: 100vh !important;
+}
+
+.second-second .form-container {
+    padding: 0 !important;
 }
 
 .second-second .contact-form-container {
     display: flex;
-    flex-direction: column; /* Располагает элементы по вертикали */
-    text-align: left !important; /* Центрирует текст */
+    flex-direction: column;
+    text-align: left; /* Убедитесь, что `text-align` настроен правильно */
+    flex: 0;
+    /* Добавьте адаптивные свойства */
+    width: 100%; /* Обеспечьте, чтобы контейнер занимал всю доступную ширину */
+    box-sizing: border-box; /* Убедитесь, что паддинг и границы учитываются */
+    overflow: hidden; /* Добавьте это, чтобы предотвратить переполнение */
 }
+
 
 .second-second .form-container {
     margin-bottom: 20px; /* Добавляет отступ между текстом и картинкой */
+    width: 100%; /* Убедитесь, что контейнер занимает всю доступную ширину */
+    max-width: 668px;
+    box-sizing: border-box; /* Добавьте это, чтобы включить отступы и границы в размер элемента */
 }
 
 .second-second .second-image img {
@@ -174,21 +192,6 @@ body {
     overflow-x: hidden;
 }
 
-.header {
-    width: 100%;
-    max-height: 101px;
-    background: rgba(0, 0, 0, 0.33);
-    padding-top: 21px;
-    padding-bottom: 21px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 
 /* Modal styling */
@@ -248,9 +251,13 @@ label {
 }
 
 input[type="text"],
-input[type="checkbox"],
+input[type="checkbox"]{
+    margin-bottom: 10px;
+}
+
 button[type="submit"] {
     margin-bottom: 10px;
+    border-radius: 28px !important;
 }
 
 input[type="text"] {
@@ -319,15 +326,7 @@ button[type="submit"]:hover {
     max-width: 1440px;
 }
 
-.header-content {
-    max-width: none;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-}
+
 
 .navbar {
     width: 100%;
@@ -1105,6 +1104,7 @@ button[type="submit"]:hover {
     text-align: center;
     font-family: 'Inter', sans-serif;
     color: #000;
+    flex-shrink: 0 !important;
 }
 
 .footer-container {
@@ -1200,7 +1200,6 @@ button[type="submit"]:hover {
         right: 0;
         justify-content: center;
     }
-
 }
 
 @media (max-width: 768px) {
@@ -1209,6 +1208,20 @@ button[type="submit"]:hover {
         font-size: 38px !important;
     }
     
+    .contact-form-container {
+        height: 800px!important;
+    }
+
+    .overlay h2 {
+        font-size: 30px !important;
+        margin: 0px !important;
+    }
+
+    .overlay p {
+        font-size: 15px !important;
+        margin: 0px !important;
+    }
+
     .footer-container {
         flex-direction: column;
         align-items: center;
@@ -1217,6 +1230,14 @@ button[type="submit"]:hover {
     .footer-section {
         margin-bottom: 20px;
         text-align: center;
+    }
+
+    .first-second button {
+        padding: 0 !important;
+    }
+
+    .main {
+        margin: 0px !important;
     }
 
     .footer-section p {
@@ -1596,3 +1617,19 @@ button[type="submit"]:hover {
       line-height: 10px;
     }
   }
+
+  .header {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.33);
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
