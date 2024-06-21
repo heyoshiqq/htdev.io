@@ -228,7 +228,7 @@ button[type="submit"]:hover:enabled {
     background-repeat: no-repeat;
     background-position: center;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
     display: flex;
@@ -389,10 +389,67 @@ button[type="submit"]:hover:enabled {
     text-align: center;
 }
 
+.pmain {
+    width: 100%;
+    font-size: 48pt !important;
+    max-width: 1110px !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    margin: 30px 0px !important;
+    color: rgb(255, 255, 255) !important;
+    font-size: 64px !important; 
+    font-weight: 800 !important;
+    line-height: 77px !important;
+    text-align: left !important;
+}
+
+.stat-number {
+    color: rgb(255, 255, 255) !important;
+    font-size: 64px !important;
+    font-weight: 800 !important;
+    line-height: 77px !important;
+    letter-spacing: 0% !important;
+    margin: 0 !important;
+    text-align: left !important;
+    text-decoration: none !important;
+}
+
 .badge-custom:hover, .badge-custom2:hover, .badge-custom3:hover, .badge-custom4:hover, .badge-custom5:hover, .badge-custom6:hover, .badge-custom7:hover, .badge-custom8:hover {
     transform: scale(1.05);
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.badge-custom:hover:after, .badge-custom2:hover::after, .badge-custom3:hover::after, .badge-custom4:hover::after, .badge-custom5:hover::after, .badge-custom6:hover::after, 
+.badge-custom7:hover::after, .badge-custom8:hover::after{
+    content: '';
+    position: absolute;
+    border-radius: 40px !important;
+    top: 0;
+    left: -2px;
+    right: -2px;
+    bottom: 0;
+    border: 2px solid #ffffff; 
+    box-shadow: 0px 0px 10px 5px rgb(255, 255, 255); 
+    z-index: 1;
+    filter: blur(7px);
+    animation: gradient-glow 0.6s ease-out forwards; 
+}
+
+@keyframes gradient-glow {
+    0% {
+        box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.8),
+                    0px 0px 20px 10px rgba(255, 255, 255, 0.6),
+                    0px 0px 30px 15px rgba(255, 255, 255, 0.4);
+    }
+    100% {
+        box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0),
+                    0px 0px 20px 10px rgba(255, 255, 255, 0),
+                    0px 0px 30px 15px rgba(255, 255, 255, 0); 
+    }
+}
+
 
 .badge-custom,
 .badge-custom2,
@@ -502,11 +559,6 @@ button[type="submit"]:hover:enabled {
 
 .text-container p, .image-container img {
     transition: opacity 0.5s ease;
-}
-
-.badge-custom:hover, .badge-custom2:hover, .badge-custom3:hover, .badge-custom4:hover, .badge-custom5:hover, .badge-custom6:hover, .badge-custom7:hover, .badge-custom8:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .badge-custom span,
@@ -623,6 +675,11 @@ button[type="submit"]:hover:enabled {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.second-section-main img {
+    border-radius: 20px;
+    object-fit: cover;
 }
 
 @keyframes blink {
@@ -1026,6 +1083,11 @@ button[type="submit"]:hover:enabled {
         justify-content: center;
     }
 
+    
+    .badge p {
+    }
+
+
 }
 
 @media (max-width: 768px) {
@@ -1114,6 +1176,7 @@ button[type="submit"]:hover:enabled {
 
     .second-section {
         max-width: 540px;
+        min-height: 70vh !important;
     }
 
     .nav {
@@ -1129,6 +1192,13 @@ button[type="submit"]:hover:enabled {
         line-height: 58px;
         margin: 20px 0px;
     }
+
+    .pmain {
+        font-size: 48px !important;
+        line-height: 58px !important;
+        margin: 20px 0px !important;
+    }
+
 
     .first-but {
         max-width: 90%;
@@ -1153,14 +1223,14 @@ button[type="submit"]:hover:enabled {
         margin: 10px 0;
     }
 
-    .stat-item h2 {
-        font-size: 28px;
-        line-height: 58px;
+    .stat-item .stat-number {
+        font-size: 28px !important;
+        line-height: 58px !important;
     }
 
     .stat-item p {
-        font-size: 16px;
-        line-height: 25px;
+        font-size: 16px !important;
+        line-height: 25px !important;
         max-width: 30px !important;
     }
 
@@ -1300,6 +1370,12 @@ button[type="submit"]:hover:enabled {
         margin: 10px 0px;
     }
 
+    .pmain {
+        font-size: 36px !important;
+        line-height: 46px !important;
+        margin: 10px 0px !important;
+    }
+
     .first-but {
         max-width: 100%;
     }
@@ -1323,7 +1399,7 @@ button[type="submit"]:hover:enabled {
         margin: 5px 0;
     }
 
-    .stat-item h2 {
+    .stat-item .stat-number {
         font-size: 28px;
         line-height: 58px;
     }
@@ -1413,3 +1489,100 @@ button[type="submit"]:hover:enabled {
       line-height: 10px;
     }
   }
+
+
+  .first-second {
+    background-image: url('img/sq.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh !important;
+    position: static !important;
+}
+
+.second-image iframe {
+    width: 100%;
+    border: 0;
+    border-radius: 28px;
+}
+.overlay {
+    position: absolute !important;
+    z-index: 55 !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(182.60deg, rgba(0, 0, 0, 0) 35.893%,rgb(0, 0, 0) 110.914%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    border-radius: 28px;
+}
+.overlay h2 {
+position: absolute;
+width: 216px;
+height: 77px;
+left: 65px;
+right: 828px;
+top: 353px;
+bottom: 70px;
+display: flex;
+flex-direction: row;
+align-items: center;
+color: rgb(255, 255, 255);
+font-family: 'Inter', sans-serif;
+font-size: 64px;
+font-weight: 900;
+line-height: 77px;
+letter-spacing: 0%;
+text-align: left;
+}
+
+.overlay p {
+position: absolute;
+height: 39px;
+left: 65px;
+right: -65px;
+top: 419px;
+bottom: -419px;
+color: rgb(255, 255, 255);
+font-family: 'Inter', sans-serif;
+font-size: 32px;
+font-weight: 600;
+line-height: 39px;
+letter-spacing: 0%;
+text-align: left;
+}
+
+iframe:focus {
+    outline: none !important;
+}
+
+iframe {
+    outline: none !important;
+    border: none !important;
+}
+
+.contact-card h5{
+    color: rgb(51, 51, 51);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.contact-card p{
+    color: rgb(51, 51, 51);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
