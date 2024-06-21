@@ -5,158 +5,183 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTDev</title>
     <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="style.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..870&display=swap" rel="stylesheet">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 <body>
-<!-- Modal HTML -->
-<div id="contactModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Обратный звонок</h2>
-        <form action="https://formspree.io/f/moqggnko" method="post" id="callbackForm">
-            <label for="name">Имя*</label>
-            <input type="text" id="name" name="name" placeholder="Обязательное поле" required>
-            <span class="error" id="nameError">Пожалуйста, введите имя.</span>
-
-            <label for="phone">Телефон*</label>
-            <input type="text" id="phone" name="phone" placeholder="Обязательное поле" required>
-            <span class="error" id="phoneError">Пожалуйста, введите корректный номер телефона.</span>
-
-            <div class="consent">
-                <input type="checkbox" id="consent" name="consent" required>
-                <label for="consent">Настоящим я соглашаюсь на обработку моих персональных данных и подтверждаю, что ознакомлен(а) с <a href="#">Политикой в области обработки и защиты персональных данных</a></label>
-            </div>
-            <button type="submit" class="btn btn-primary">Отправить</button>
-        </form>
-    </div>
-</div>
-    
-</div>
-
-<header class="header">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand" href="index.html">
-                <img src="img/HTDev.png" alt="HTDev Logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Направления</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Преимущества</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Кейсы</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="second.html">Контакты</a>
-                    </li>
-                </ul>
-                <div class="contact-button d-none d-lg-block">
-                    <button class="btn btn-primary" id="contactBtn"><span>Связаться</span></button>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="index.html">
+                    <img src="img/HTDev.png" alt="HTDev Logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Направления</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Преимущества</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Кейсы</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="second.html">Контакты</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="third.html">Галерея</a>
+                        </li>
+                    </ul>
+                    <div class="contact-button d-none d-lg-block">
+                        <button class="btn btn-primary" id="contactBtn"><span>Связаться</span></button>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
+    </header>
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Обратный звонок</h2>
+            <form id="callbackForm">
+                <label for="name">Имя</label>
+                <input type="text" id="name" name="name" placeholder="Обязательное поле" required>
+                <span class="error" id="nameError">Пожалуйста, введите имя.</span>
+            
+                <label for="phone">Телефон</label>
+                <input type="text" id="phone" name="phone" placeholder="Обязательное поле" required>
+                <span class="error" id="phoneError">Пожалуйста, введите корректный номер телефона.</span>
+            
+                <div class="consent">
+                    <input type="checkbox" id="consent" name="consent" required>
+                    <label for="consent">Настоящим я соглашаюсь на обработку моих персональных данных и подтверждаю, что ознакомлен(а) с <a href="#">Политикой в области обработки и защиты персональных данных</a></label>
+                </div>
+                <button type="submit" class="btn btn-primary" id="submitBtn" disabled>Отправить</button>
+            </form>
+            <div id="resultMessage"></div>                                       
+        </div>
     </div>
-</header>
-
-
-
 <main>
     <section class="first-second">
-    <div class="container contact-form-container">
-        <div class="contact-image">
-            <img src="img/image 17.png" alt="Contact Image">
+        <div class="container contact-form-container">
+            <div class="contact-image">
+                <img src="img/image 17.png" alt="Contact Image">
+            </div>
+            <div class="form-container">
+                <h2>Связаться с нами</h2>
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Имя</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Компания</label>
+                            <input type="text" id="company" name="company" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Телефон</label>
+                            <input type="text" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-row comment-row">
+                        <div class="form-group comment-group">
+                            <label for="comment">Комментарий</label>
+                            <textarea id="comment" name="comment" rows="1" required></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">Связаться с нами</button>
+                </form>
+            </div>
         </div>
-        <div class="form-container">
-            <h2>Связаться с нами</h2>
-            <form action="https://formspree.io/f/moqggnko" method="post">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">Имя</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Компания</label>
-                        <input type="text" id="company" name="company">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="phone">Телефон</label>
-                        <input type="text" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" id="email" name="email">
-                    </div>
-                </div>
-                <div class="form-row comment-row">
-                    <div class="form-group comment-group">
-                        <label for="comment">Комментарий</label>
-                        <textarea id="comment" name="comment" rows="1"></textarea>
-                    </div>
-                </div>
-                <button type="submit" class="btn">Связаться с нами</button>
-            </form>
-        </div>
-    </div>
-</section>
-<section class="second-second">
-    <div class="container contact-form-container">
-        <div class="form-container">
-            <h2>Наш адрес</h2>
-        </div>
-        <div class="second-image">
-            <img src="img/map.png" alt="Contact Image">
-        </div>
-    </div>
-</section>
+    </section>
+    
+    <section class="second-second">
+        <div class="container contact-form-container">
+            <div class="form-container">
+                <h2>Наш адрес</h2>
+            </div>
+            <div class="second-image" style="position: relative;">
+                <div id="yandexMap" style="width: 100%; height: 500px; border-radius: 28px; overflow: hidden;"></div>
+                <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; color: white; border-radius: 28px;
 
+                background: linear-gradient(182.60deg, rgba(0, 0, 0, 0) 35.893%,rgb(0, 0, 0) 110.914%);">
+                    <h2>HTDev</h2>
+                    <p>ул. Федерации, 83 офис 45,48, этаж 4</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+    <script>
+        ymaps.ready(init);
+    
+        function init() {
+            var myMap = new ymaps.Map("yandexMap", {
+                center: [54.328052, 48.396243],
+                zoom: 15
+            });
+    
+            var placemark = new ymaps.Placemark([54.328052, 48.396243], {
+                hintContent: 'HTDev',
+                balloonContent: 'HTDev ул. Федерации, 83 офис 45,48, этаж 4'
+            });
+    
+            myMap.geoObjects.add(placemark);
+        }
+    </script>
+     
 <div class="container py-5">
-    <h2 class="text-center mb-4">Наши контакты</h2>
+    <h2 class="text-center mb-4" style="padding-bottom: 60px;">Наши контакты</h2>
     <div class="row justify-content-center">
       <div class="col-md-3 col-sm-6 mb-4">
         <div class="contact-card">
-          <img src="https://via.placeholder.com/100" alt="Александр Гаврилов">
+          <img src="img/Ellipse.png" alt="Александр Гаврилов">
           <h5>Александр Гаврилов</h5>
-          <p>Менеджер</p>
+          <p style="opacity: 0.6;">Менеджер</p>
           <p>
-            <a href="#"><img src="https://img.icons8.com/fluent/24/000000/twitter.png"/></a>
-            <a href="#"><img src="https://img.icons8.com/fluent/24/000000/linkedin.png"/></a>
-            <a href="#"><img src="https://img.icons8.com/fluent/24/000000/github.png"/></a>
+            <a href="#"><img src="https://img.icons8.com/fluent/24/000000/twitter.png" style="width: 18px; height: auto;"/></a>
+            <a href="#"><img src="https://img.icons8.com/fluent/24/000000/linkedin.png" style="width: 18px; height: auto;"/></a>
+            <a href="#"><img src="https://img.icons8.com/fluent/24/000000/github.png" style="width: 18px; height: auto;"/></a>
           </p>
         </div>
       </div>
       <div class="col-md-3 col-sm-6 mb-4">
         <div class="contact-card">
-          <img src="https://via.placeholder.com/100" alt="Алена Бос">
+          <img src="img/Ellipse (1).png" alt="Алена Бос">
           <h5>Вадми Грибов</h5>
-          <p>Директор</p>
+          <p style="opacity: 0.6;">Директор</p>
           <p>
-            <a href="#"><img src="https://img.icons8.com/fluent/24/000000/twitter.png"/></a>
-            <a href="#"><img src="https://img.icons8.com/fluent/24/000000/linkedin.png"/></a>
-            <a href="#"><img src="https://img.icons8.com/fluent/24/000000/github.png"/></a>
+            <a href="#"><img src="https://img.icons8.com/fluent/24/000000/twitter.png" style="width: 18px; height: auto;"/></a>
+            <a href="#"><img src="https://img.icons8.com/fluent/24/000000/linkedin.png" style="width: 18px; height: auto;"/></a>
+            <a href="#"><img src="https://img.icons8.com/fluent/24/000000/github.png" style="width: 18px; height: auto;"/></a>
           </p>
         </div>
       </div>
       <div class="col-md-3 col-sm-6 mb-4">
         <div class="contact-card">
-          <img src="https://via.placeholder.com/100" alt="Камиль Могучий">
+          <img src="img/Ellipse (2).png" alt="Камиль Могучий">
           <h5>Камиль Могучий</h5>
-          <p>Программист</p>
+          <p style="opacity: 0.6;">Программист</p>
           <p>
-            <a href="#"><img src="https://img.icons8.com/fluent/24/000000/twitter.png"/></a>
-            <a href="#"><img src="https://img.icons8.com/fluent/24/000000/linkedin.png"/></a>
-            <a href="#"><img src="https://img.icons8.com/fluent/24/000000/github.png"/></a>
+            <a href="#"><img src="https://img.icons8.com/fluent/24/000000/twitter.png" style="width: 18px; height: auto;"/></a>
+            <a href="#"><img src="https://img.icons8.com/fluent/24/000000/linkedin.png" style="width: 18px; height: auto;"/></a>
+            <a href="#"><img src="https://img.icons8.com/fluent/24/000000/github.png" style="width: 18px; height: auto;"/></a>
           </p>
         </div>
       </div>
